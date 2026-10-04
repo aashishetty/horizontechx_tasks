@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TaskFlow | Projects</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/css/taskflow-pages.css"
+    >
+
+    <style>
+/* ========================================
+   PROJECT TODO LIST
+======================================== */
+
+.todo-help {
+
+    margin: -2px 0 14px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.checklist-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.checklist-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 11px;
+
+    background: #fafafa;
+
+}
+
+
+.checklist-item input[type="checkbox"] {
+
+    width: 18px;
+    height: 18px;
+
+    accent-color: #7c3aed;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+}
+
+
+.checklist-text {
+
+    flex: 1;
+
+    color: #111827;
+
+    font-size: 14px;
+
+}
+
+
+.checklist-item.completed .checklist-text {
+
+    text-decoration: line-through;
+
+    color: #9ca3af;
+
+}
+
+
+.remove-task-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #9ca3af;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+.remove-task-button:hover {
+
+    color: #dc2626;
+
+}
+
+
+.add-task-row {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.add-task-row input {
+
+    flex: 1;
+
+}
+
+
+.add-task-button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 0 18px;
+
+    background: #f3e8ff;
+
+    color: #7c3aed;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.add-task-button:hover {
+
+    background: #e9d5ff;
+
+}
+
+
+/* ========================================
+   AUTOMATIC PROGRESS
+======================================== */
+
+.automatic-progress-card {
+
+    padding: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    background: #fafafa;
+
+}
+
+
+.automatic-progress-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.automatic-progress-header strong {
+
+    color: #111827;
+
+}
+
+
+.automatic-progress-header p {
+
+    margin: 4px 0 0;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+}
+
+
+#automaticProgressValue {
+
+    color: #7c3aed;
+
+    font-size: 18px;
+
+}
+
+
+.automatic-progress-bar {
+
+    height: 9px;
+
+    border-radius: 20px;
+
+    background: #e5e7eb;
+
+    overflow: hidden;
+
+}
+
+
+.automatic-progress-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #7c3aed;
+
+    border-radius: 20px;
+
+    transition: width .25s ease;
+
+}
+
+
+.task-progress-text {
+
+    margin-top: 8px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .add-task-row {
+
+        flex-direction: column;
+
+    }
+
+
+    .add-task-button {
+
+        min-height: 44px;
+
+    }
+
+}
+        /* ========================================
+           PROJECT PAGE
+        ======================================== */
+
+        .project-page {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+
+        .project-page-header {
+            margin-bottom: 28px;
+        }
+
+
+        .project-page-header h1 {
+            margin: 5px 0 8px;
+            font-size: 32px;
+            color: #111827;
+        }
+
+
+        .project-page-header p {
+            color: #6b7280;
+            margin: 0;
+        }
+
+
+        /* ========================================
+           CREATE AREA
+        ======================================== */
+
+        .create-project-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(280px, .8fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+
+        .project-form-card,
+        .project-preview-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            box-shadow:
+                0 10px 35px rgba(17, 24, 39, .06);
+        }
+
+
+        .project-form-card {
+            padding: 30px;
+        }
+
+
+        .project-preview-card {
+            padding: 26px;
+            position: sticky;
+            top: 25px;
+        }
+
+
+        .form-card-heading {
+            margin-bottom: 25px;
+        }
+
+
+        .form-card-heading h2 {
+            margin: 0 0 5px;
+            color: #111827;
+        }
+
+
+        .form-card-heading p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+
+        /* ========================================
+           FORM GRID
+        ======================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+
+        .required {
+            color: #7c3aed;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+
+            width: 100%;
+            box-sizing: border-box;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 11px;
+
+            outline: none;
+
+            font-family: inherit;
+            font-size: 14px;
+
+            color: #111827;
+            background: #ffffff;
+
+            transition: .2s;
+
+        }
+
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+
+            color: #9ca3af;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(124, 58, 237, .10);
+
+        }
+
+
+        .form-group textarea {
+
+            min-height: 120px;
+            resize: vertical;
+
+        }
+
+
+        /* ========================================
+           PROGRESS
+        ======================================== */
+
+        .progress-input-row {
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+        }
+
+
+        .progress-input-row input[type="range"] {
+
+            flex: 1;
+
+        }
+
+
+        .progress-value {
+
+            min-width: 45px;
+            text-align: center;
+
+            padding: 7px 9px;
+
+            border-radius: 8px;
+
+            background: #f3f4f6;
+            color: #111827;
+
+            font-size: 13px;
+            font-weight: 700;
+
+        }
+
+
+        /* ========================================
+           COLOR
+        ======================================== */
+
+        .color-row {
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+        }
+
+
+        .color-row input[type="color"] {
+
+            width: 52px;
+            height: 42px;
+
+            padding: 3px;
+
+            border-radius: 10px;
+            cursor: pointer;
+
+        }
+
+
+        .color-hint {
+
+            color: #6b7280;
+            font-size: 13px;
+
+        }
+
+
+        /* ========================================
+           ACTIONS
+        ======================================== */
+
+        .project-form-actions {
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+
+            margin-top: 10px;
+            padding-top: 22px;
+
+            border-top: 1px solid #f0f0f0;
+
+        }
+
+
+        .cancel-button {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            background: #f3f4f6;
+            color: #374151;
+
+            border: 1px solid #e5e7eb;
+
+            font-size: 14px;
+            font-weight: 600;
+
+        }
+
+
+        .cancel-button:hover {
+
+            background: #e5e7eb;
+
+        }
+
+
+        .create-project-button {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 23px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #7c3aed;
+            color: #ffffff;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 7px 18px
+                rgba(124, 58, 237, .22);
+
+            transition: .2s;
+
+        }
+
+
+        .create-project-button:hover {
+
+            background: #6d28d9;
+            transform: translateY(-1px);
+
+        }
+
+
+        .create-project-button:disabled {
+
+            opacity: .65;
+            cursor: not-allowed;
+            transform: none;
+
+        }
+
+
+        /* ========================================
+           PREVIEW
+        ======================================== */
+
+        .preview-label {
+
+            color: #7c3aed;
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: .12em;
+            text-transform: uppercase;
+
+        }
+
+
+        .preview-project {
+
+            margin-top: 18px;
+
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            background: #fff;
+
+        }
+
+
+        .preview-color {
+
+            height: 8px;
+            background: #7c3aed;
+
+        }
+
+
+        .preview-body {
+
+            padding: 20px;
+
+        }
+
+
+        .preview-icon {
+
+            width: 46px;
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: #f3e8ff;
+            color: #7c3aed;
+
+            font-size: 19px;
+            font-weight: 800;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .preview-body h3 {
+
+            margin: 0 0 7px;
+            color: #111827;
+
+        }
+
+
+        .preview-body p {
+
+            margin: 0 0 18px;
+
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.6;
+
+        }
+
+
+        .preview-tags {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+
+        }
+
+
+        .preview-tag {
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: #f3f4f6;
+            color: #4b5563;
+
+            font-size: 11px;
+            font-weight: 700;
+
+        }
+
+
+        .preview-progress {
+
+            margin-top: 20px;
+
+        }
+
+
+        .preview-progress-top {
+
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 7px;
+
+            font-size: 12px;
+            color: #6b7280;
+
+        }
+
+
+        .preview-progress-bar {
+
+            height: 7px;
+
+            background: #f3f4f6;
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .preview-progress-fill {
+
+            width: 0%;
+
+            height: 100%;
+
+            background: #7c3aed;
+
+            transition: .2s;
+
+        }
+
+
+        /* ========================================
+           MESSAGE
+        ======================================== */
+
+        .form-message {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+        }
+
+
+        .form-message.success {
+
+            display: block;
+
+            background: #ecfdf5;
+            color: #047857;
+
+            border: 1px solid #a7f3d0;
+
+        }
+
+
+        .form-message.error {
+
+            display: block;
+
+            background: #fef2f2;
+            color: #b91c1c;
+
+            border: 1px solid #fecaca;
+
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 850px) {
+
+            .create-project-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .project-preview-card {
+
+                position: static;
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .project-page {
+
+                padding: 25px 18px;
+
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .form-group.full {
+
+                grid-column: auto;
+
+            }
+
+
+            .project-form-actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .cancel-button,
+            .create-project-button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    
+        /* ========================================
+           TASKFLOW DARK FORM OVERRIDES
+        ======================================== */
+        .project-page {
+            color: #f4f5fb;
+        }
+        .project-page-header h1,
+        .form-card-heading h2,
+        .form-group label,
+        .automatic-progress-header strong {
+            color: #f4f5fb;
+        }
+        .project-page-header > p:last-child,
+        .form-card-heading p,
+        .form-group label,
+        .color-hint,
+        .todo-help,
+        .automatic-progress-header p,
+        .task-progress-text {
+            color: #85899d;
+        }
+        .project-form-card,
+        .project-preview-card {
+            background: linear-gradient(145deg, rgba(18,21,35,.96), rgba(13,16,27,.96));
+            border: 1px solid rgba(255,255,255,.07);
+            box-shadow: 0 25px 70px rgba(0,0,0,.28);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            border: 1px solid rgba(255,255,255,.09);
+            background: #0d101a;
+            color: #f4f5fb;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #5f6476;
+        }
+        .form-group select option {
+            background: #121523;
+            color: #f4f5fb;
+        }
+        .checklist-item,
+        .automatic-progress-card {
+            border-color: rgba(255,255,255,.07);
+            background: rgba(255,255,255,.025);
+        }
+        .checklist-text,
+        .automatic-progress-header strong {
+            color: #e9eaf1;
+        }
+        .project-form-actions {
+            border-top-color: rgba(255,255,255,.07);
+        }
+        .cancel-button {
+            background: rgba(255,255,255,.05) !important;
+            color: #c6c9d5 !important;
+            border: 1px solid rgba(255,255,255,.08);
+        }
+        .cancel-button:hover {
+            background: rgba(255,255,255,.08) !important;
+        }
+        .add-task-button {
+            background: rgba(139,92,246,.12);
+            color: #b7a8ff;
+        }
+        .add-task-button:hover {
+            background: rgba(139,92,246,.2);
+        }
+        .progress-value {
+            background: rgba(255,255,255,.06);
+            color: #e9eaf1;
+        }
+        .automatic-progress-bar {
+            background: rgba(255,255,255,.08);
+        }
+        .form-message.success { color: #69dfa0; }
+        .form-message.error { color: #ff7f96; }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✓
+            </div>
+
+            <div>
+                <h2>TaskFlow</h2>
+                <span>Work smarter.</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-label">
+                WORKSPACE
+            </p>
+
+
+            <a
+                href="/dashboard.html"
+                class="nav-item"
+            >
+                <span>▦</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="/project.html"
+                class="nav-item active"
+            >
+                <span>▣</span>
+                Projects
+            </a>
+
+
+            <a
+                href="/dashboard.html#tasks"
+                class="nav-item"
+            >
+                <span>✓</span>
+                My Tasks
+            </a>
+
+
+            <a
+                href="/dashboard.html#activity"
+                class="nav-item"
+            >
+                <span>◷</span>
+                Activity
+            </a>
+
+
+            <p class="nav-label">
+                ACCOUNT
+            </p>
+
+
+            <a
+                href="/profile.html"
+                class="nav-item"
+            >
+                <span>◉</span>
+                Profile
+            </a>
+
+
+            <a
+                href="/settings.html"
+                class="nav-item"
+            >
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="upgrade-card">
+
+                <div class="upgrade-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Stay productive
+                </h3>
+
+                <p>
+                    Organize your work,
+                    track progress and
+                    collaborate with your team.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="logoutUser()"
+            >
+                <span>↪</span>
+                Log out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+                <strong>TaskFlow</strong>
+            </div>
+
+
+            <div class="topbar-search">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    placeholder="Search projects, tasks..."
+                >
+
+                <kbd>/</kbd>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <div class="topbar-user">
+
+                    <div
+                        class="user-avatar"
+                        id="userAvatar"
+                    >
+                        U
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong id="userName">
+                            User
+                        </strong>
+
+                        <span id="userUsername">
+                            @user
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="project-page">
+
+            <div class="project-page-header">
+
+                <p class="eyebrow">
+                    WORKSPACE
+                </p>
+
+                <h1>
+                    Create a new project
+                </h1>
+
+                <p>
+                    Set up your project, define your goal,
+                    and start tracking progress.
+                </p>
+
+            </div>
+
+
+
+            <div class="create-project-layout">
+
+
+                <!-- FORM -->
+
+                <div class="project-form-card">
+
+                    <div class="form-card-heading">
+
+                        <h2>
+                            Project details
+                        </h2>
+
+                        <p>
+                            Add the information you'll need
+                            to manage this project.
+                        </p>
+
+                    </div>
+
+
+                    <form id="projectForm">
+
+                        <div class="form-grid">
+
+
+
+
+                            <!-- PROJECT NAME -->
+
+                            <div class="form-group full">
+
+                                <label for="projectName">
+                                    Project Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="projectName"
+                                    placeholder="Enter project name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- DESCRIPTION -->
+
+                            <div class="form-group full">
+
+                                <label for="projectDescription">
+                                    Description
+                                    <span class="required">*</span>
+                                </label>
+
+                                <textarea
+                                    id="projectDescription"
+                                    placeholder="What is this project about?"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <!-- START DATE -->
+
+                            <div class="form-group">
+
+                                <label for="projectStartDate">
+                                    Start Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="projectStartDate"
+                                >
+
+                            </div>
+
+
+                            <!-- DUE DATE -->
+
+                            <div class="form-group">
+
+                                <label for="projectDueDate">
+                                    Due Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="projectDueDate"
+                                >
+
+                            </div>
+
+
+                            <!-- GOAL -->
+
+                            <div class="form-group full">
+
+                                <label for="projectGoal">
+                                    Project Goal
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="projectGoal"
+                                    placeholder="What do you want to achieve?"
+                                >
+
+                            </div>
+<div class="form-group">
+
+    <label for="projectCategory">
+        Category
+        <span class="required">*</span>
+    </label>
+
+    <select
+        id="projectCategory"
+        required
+    >
+
+        <option value="" selected disabled>
+            Select category
+        </option>
+
+        <option value="College">
+            College
+        </option>
+
+        <option value="Work">
+            Work
+        </option>
+
+        <option value="Personal">
+            Personal
+        </option>
+
+        <option value="Other">
+            Other
+        </option>
+
+    </select>
+
+</div>
+<div class="form-group">
+
+    <label for="projectPriority">
+        Priority
+        <span class="required">*</span>
+    </label>
+
+    <select
+        id="projectPriority"
+        required
+    >
+
+        <option value="" selected disabled>
+            Select priority
+        </option>
+
+        <option value="Low">
+            Low
+        </option>
+
+        <option value="Medium">
+            Medium
+        </option>
+
+        <option value="High">
+            High
+        </option>
+
+    </select>
+
+</div>
+<div class="form-group">
+
+    <label for="projectStatus">
+        Status
+        <span class="required">*</span>
+    </label>
+
+    <select
+        id="projectStatus"
+        required
+    >
+
+        <option value="" selected disabled>
+            Select status
+        </option>
+
+        <option value="Planning">
+            Planning
+        </option>
+
+        <option value="In Progress">
+            In Progress
+        </option>
+
+        <option value="On Hold">
+            On Hold
+        </option>
+
+        <option value="Completed">
+            Completed
+        </option>
+
+    </select>
+
+</div>  
+<div class="form-group full">
+
+    <label>
+        Project Checklist
+    </label>
+
+    <p class="todo-help">
+    Track the major steps of this project and monitor overall progress.
+    For detailed tasks with priority, status, assignment and due dates,
+    use My Tasks.
+</p>
+
+    <div
+        id="checklistContainer"
+        class="checklist-container"
+    ></div>
+
+    <div class="add-task-row">
+
+        <input
+            type="text"
+            id="checklistInput"
+            placeholder="Enter a task..."
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            id="addChecklistBtn"
+            class="add-task-button"
+        >
+            ＋ Add Task
+        </button>
+
+    </div>
+
+</div>
+<div class="form-group full">
+
+    <div class="automatic-progress-card">
+
+        <div class="automatic-progress-header">
+
+            <div>
+
+                <strong>
+                    Project Progress
+                </strong>
+
+                <p>
+                    Automatically calculated from completed tasks
+                </p>
+
+            </div>
+
+            <strong
+                id="automaticProgressValue"
+            >
+                0%
+            </strong>
+
+        </div>
+
+
+        <div class="automatic-progress-bar">
+
+            <div
+                id="automaticProgressFill"
+                class="automatic-progress-fill"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="taskProgressText"
+            class="task-progress-text"
+        >
+            0 of 0 tasks completed
+        </div>
+
+    </div>
+
+</div>  
+
+                            </div>
+
+
+                            <!-- COLOR -->
+
+                            <div class="form-group">
+
+                                <label>
+                                    Project Color
+                                </label>
+
+                                <div class="color-row">
+
+                                    <input
+                                        type="color"
+                                        id="projectColor"
+                                        value="#7c3aed"
+                                    >
+
+                                    <span class="color-hint">
+                                        Choose a color
+                                        for this project
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            id="formMessage"
+                            class="form-message"
+                        ></div>
+
+
+                        <div class="project-form-actions">
+
+                            <a
+                                href="/dashboard.html"
+                                class="cancel-button"
+                            >
+                                Cancel
+                            </a>
+
+
+                            <button
+                                type="submit"
+                                class="create-project-button"
+                                id="createProjectBtn"
+                            >
+                                ＋ Create Project
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- LIVE PREVIEW -->
+
+                <div class="project-preview-card">
+
+                    <span class="preview-label">
+                        Live Preview
+                    </span>
+
+
+                    <div class="preview-project">
+
+                        <div
+                            class="preview-color"
+                            id="previewColor"
+                        ></div>
+
+
+                        <div class="preview-body">
+
+                            <div
+                                class="preview-icon"
+                                id="previewIcon"
+                            >
+                                P
+                            </div>
+
+
+                            <h3 id="previewName">
+                                Your Project
+                            </h3>
+
+
+                            <p id="previewDescription">
+                                Your project description
+                                will appear here.
+                            </p>
+
+
+                            <div class="preview-tags">
+
+                                <span
+                                    class="preview-tag"
+                                    id="previewCategory"
+                                >
+                                    Other
+                                </span>
+
+                                <span
+                                    class="preview-tag"
+                                    id="previewPriority"
+                                >
+                                    Medium Priority
+                                </span>
+
+                            </div>
+
+
+                            <div class="preview-progress">
+
+                                <div
+                                    class="preview-progress-top"
+                                >
+
+                                    <span>
+                                        Progress
+                                    </span>
+
+                                    <strong
+                                        id="previewProgress"
+                                    >
+                                        0%
+                                    </strong>
+
+                                </div>
+
+
+                                <div
+                                    class="preview-progress-bar"
+                                >
+
+                                    <div
+                                        class="preview-progress-fill"
+                                        id="previewProgressFill"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/project.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+TASKFLOW FINAL UPDATE — FILES TO APPLY
+
+1. Keep your existing /css/style.css unchanged. Append dashboard-additions.css and taskflow-pages.css to the end of style.css OR add both as separate stylesheet links.
+2. Replace public/js/dashboard.js with dashboard.js from this folder.
+3. Create public/my-tasks.html and public/js/my-tasks.js.
+4. Create public/activity.html and public/js/activity.js.
+5. Create public/profile.html and public/js/profile.js.
+6. Create public/settings.html and public/js/settings.js.
+7. In dashboard.html change sidebar links:
+   My Tasks -> /my-tasks.html
+   Activity -> /activity.html
+   Profile -> /profile.html
+   Settings -> /settings.html
+8. In dashboard.html, change the Your Projects card heading from "Your Projects" to "Project Orbit" and the View all link to /project.html with text "Explore all ↗".
+9. In dashboard.html, add:
+   <link rel="stylesheet" href="/css/dashboard-additions.css">
+   after the existing style.css link.
+10. The existing Active Tasks / Completed / Completion Rate IDs are preserved and now calculate from API tasks when available plus local tasks created on My Tasks.
+11. Keyboard shortcuts:
+   N = New Project
+   T = My Tasks
+   A = Activity
+   P = Profile
+   S = Settings
+   / = Search
+12. My Tasks has a localStorage fallback so it remains usable even if your current Task API is unavailable.
+
+
+BONUS FEATURE — NOTIFICATION CENTER
+
+13. Add a notification bell only on the Dashboard page.
+14. Show a notification when another user assigns a task to the logged-in user.
+15. Show a reminder when an active task deadline is within 3 days.
+16. Show a reminder when an active project deadline is within 3 days.
+17. Notifications must be user-specific.
+18. Show an unread indicator on the Dashboard notification bell.
+19. Allow notifications to be marked as read or all marked as read.
+20. Respect the existing Notifications setting in Settings.

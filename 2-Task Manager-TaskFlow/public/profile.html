@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaskFlow | Profile</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/taskflow-pages.css">
+</head>
+<body>
+<div class="app-shell">
+
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon">✓</div>
+        <div><h2>TaskFlow</h2><span>Work smarter.</span></div>
+    </div>
+    <nav class="sidebar-nav">
+        <p class="nav-label">WORKSPACE</p>
+        <a href="/dashboard.html" class="nav-item"><span>▦</span>Dashboard</a>
+        <a href="/project.html" class="nav-item"><span>▣</span>Projects</a>
+        <a href="/my-tasks.html" class="nav-item"><span>✓</span>My Tasks</a>
+        <a href="/activity.html" class="nav-item"><span>◷</span>Activity</a>
+        <p class="nav-label">ACCOUNT</p>
+        <a href="/profile.html" class="nav-item active"><span>◉</span>Profile</a>
+        <a href="/settings.html" class="nav-item"><span>⚙</span>Settings</a>
+    </nav>
+    <div class="sidebar-bottom">
+        <div class="upgrade-card">
+            <div class="upgrade-icon">✦</div>
+            <h3>Stay productive</h3>
+            <p>Organize your work, track progress and collaborate with your team.</p>
+        </div>
+        <button type="button" class="logout-btn" onclick="logoutUser()"><span>↪</span>Log out</button>
+    </div>
+</aside>
+
+<main class="main-content">
+
+<header class="topbar">
+    <div class="mobile-brand"><strong>TaskFlow</strong></div>
+    <div class="topbar-search">
+        <span>⌕</span>
+        <input type="text" id="pageSearch" placeholder="Search...">
+        <kbd>/</kbd>
+    </div>
+    <div class="topbar-actions">
+<div class="topbar-user">
+                        <div class="user-avatar" id="topbarUserAvatar">U</div>
+                        <div class="user-info">
+                            <strong id="topbarUserName">User</strong>
+                            <span id="topbarUserUsername"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+<section class="page-container">
+<div class="page-hero">
+  <div><p class="eyebrow">ACCOUNT</p><h1>Your Profile</h1><p>Keep your TaskFlow identity and personal details up to date.</p></div>
+</div>
+<section class="profile-layout">
+  <div class="dashboard-card profile-card-large">
+    <div class="profile-avatar-large" id="profileAvatar">A</div>
+    <p class="profile-badge">TASKFLOW MEMBER</p>
+    <h2 id="profileName">Aashi Shetty</h2>
+    <p id="profileHandle" class="muted">@aashi</p>
+    <p id="profileBio" class="profile-bio">IT student | Developer</p>
+    <div class="profile-extra">
+      <span id="profileRole" class="profile-extra-item" hidden></span>
+      <span id="profileLocation" class="profile-extra-item" hidden></span>
+    </div>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-header"><div><p class="card-kicker">DETAILS</p><h2>Edit Profile</h2></div></div>
+    <form id="profileForm" class="page-form">
+      <label>Full name<input id="profileNameInput" required></label>
+      <label>Username<input id="profileUsernameInput" disabled></label>
+      <label>Email<input id="profileEmailInput" type="email"></label>
+      <label>Bio<textarea id="profileBioInput" rows="4"></textarea></label>
+      <label>Role
+        <input id="profileRoleInput" maxlength="80" placeholder="e.g. Software Developer">
+      </label>
+      <label>Location<input id="profileLocationInput" maxlength="80" placeholder="e.g. Mumbai"></label>
+      <div id="profileMessage" class="form-message"></div>
+      <button class="primary-button" type="submit">Save Profile</button>
+    </form>
+  </div>
+</section>
+</section>
+</main>
+</div>
+<script src="/js/profile.js"></script>
+</body>
+</html>

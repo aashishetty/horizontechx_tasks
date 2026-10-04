@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>TaskFlow — Work in Flow</title>
+
+<link
+    rel="stylesheet"
+    href="/css/style.css"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 15% 10%,
+                rgba(124, 92, 255, 0.18),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 85% 25%,
+                rgba(0, 210, 255, 0.12),
+                transparent 28%
+            ),
+            #070914;
+
+        color: #f7f8ff;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(255,255,255,0.025) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,0.025) 1px,
+                transparent 1px
+            );
+
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+        width: min(1180px, calc(100% - 40px));
+        margin: 20px auto;
+
+        padding: 16px 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: rgba(13, 16, 31, 0.72);
+        backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+
+        position: relative;
+        z-index: 10;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #ffffff,
+                #9d8cff,
+                #54dfff
+            );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+    }
+
+    nav a {
+        color: #aeb4ca;
+        font-size: 14px;
+        font-weight: 600;
+
+        transition: 0.25s ease;
+    }
+
+    nav a:hover {
+        color: white;
+    }
+
+    nav a:last-child {
+        padding: 10px 17px;
+
+        border-radius: 10px;
+
+        color: white;
+
+        background:
+            linear-gradient(
+                135deg,
+                #765cff,
+                #4c8dff
+            );
+
+        box-shadow:
+            0 8px 25px rgba(108, 84, 255, 0.3);
+    }
+
+    /* HERO */
+
+    .hero {
+        width: min(1180px, calc(100% - 40px));
+        margin: 80px auto 70px;
+
+        min-height: 590px;
+
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 70px;
+
+        align-items: center;
+    }
+
+    .hero-content {
+        animation: fadeUp 0.8s ease forwards;
+    }
+
+    .tagline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px 13px;
+
+        border-radius: 999px;
+
+        background: rgba(124, 92, 255, 0.1);
+        border: 1px solid rgba(124, 92, 255, 0.25);
+
+        color: #aa9dff;
+
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.7px;
+
+        margin-bottom: 24px;
+    }
+
+    .tagline::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: #7c67ff;
+
+        box-shadow:
+            0 0 14px #7c67ff;
+    }
+
+    h1 {
+        font-size: clamp(48px, 6vw, 76px);
+        line-height: 0.98;
+        letter-spacing: -4px;
+
+        max-width: 750px;
+    }
+
+    h1 span {
+        background:
+            linear-gradient(
+                100deg,
+                #9b88ff,
+                #59ddff
+            );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .description {
+        margin-top: 28px;
+
+        max-width: 610px;
+
+        color: #969db5;
+
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 14px;
+
+        margin-top: 35px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 14px 23px;
+
+        border-radius: 12px;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border 0.25s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .primary-btn {
+        color: white;
+
+        background:
+            linear-gradient(
+                135deg,
+                #765cff,
+                #4f91ff
+            );
+
+        box-shadow:
+            0 14px 35px rgba(94, 80, 255, 0.35);
+    }
+
+    .secondary-btn {
+        color: #dce0f0;
+
+        border: 1px solid rgba(255,255,255,0.12);
+
+        background: rgba(255,255,255,0.045);
+    }
+
+    /* HERO PRODUCT PREVIEW */
+
+    .hero-card {
+        position: relative;
+
+        padding: 25px;
+
+        border-radius: 26px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(25,29,53,0.94),
+                rgba(12,15,29,0.94)
+            );
+
+        border: 1px solid rgba(255,255,255,0.1);
+
+        box-shadow:
+            0 35px 100px rgba(0,0,0,0.5),
+            inset 0 1px rgba(255,255,255,0.05);
+
+        transform: rotate(1deg);
+
+        animation: float 5s ease-in-out infinite;
+    }
+
+    .hero-card::before {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+        height: 180px;
+
+        background: #735dff;
+
+        filter: blur(90px);
+        opacity: 0.18;
+
+        top: -70px;
+        right: -50px;
+
+        pointer-events: none;
+    }
+
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 22px;
+    }
+
+    .window-dots {
+        display: flex;
+        gap: 6px;
+    }
+
+    .window-dots span {
+        width: 8px;
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: #555b72;
+    }
+
+    .preview-label {
+        color: #727990;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-bottom: 20px;
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.07);
+    }
+
+    .card-header h3 {
+        font-size: 20px;
+    }
+
+    .card-header p {
+        color: #777e97;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .task-icon {
+        width: 38px;
+        height: 38px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 12px;
+
+        background:
+            rgba(124, 92, 255, 0.15);
+
+        color: #a99bff;
+    }
+
+    .task {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        padding: 17px 0;
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.055);
+    }
+
+    .task:last-child {
+        border-bottom: none;
+    }
+
+    .task-check {
+        width: 23px;
+        height: 23px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 7px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #765cff,
+                #4e91ff
+            );
+
+        color: white;
+
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .task-check.pending {
+        background: transparent;
+
+        border:
+            1px solid rgba(255,255,255,0.16);
+    }
+
+    .task-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .task-info strong {
+        font-size: 13px;
+        color: #e8eaf3;
+    }
+
+    .task-info small {
+        color: #777e97;
+        font-size: 11px;
+    }
+
+    /* FLOATING STATS */
+
+    .floating-stat {
+        position: absolute;
+
+        padding: 14px 17px;
+
+        border-radius: 15px;
+
+        background:
+            rgba(18,21,39,0.9);
+
+        border:
+            1px solid rgba(255,255,255,0.1);
+
+        backdrop-filter: blur(15px);
+
+        box-shadow:
+            0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .floating-stat strong {
+        display: block;
+        font-size: 18px;
+    }
+
+    .floating-stat span {
+        color: #777e97;
+        font-size: 10px;
+    }
+
+    .stat-one {
+        left: -45px;
+        bottom: 70px;
+    }
+
+    .stat-two {
+        right: -35px;
+        top: 85px;
+    }
+
+    /* TRUST STRIP */
+
+    .trust-strip {
+        width: min(1000px, calc(100% - 40px));
+        margin: 0 auto 90px;
+
+        text-align: center;
+    }
+
+    .trust-strip p {
+        color: #626a82;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+    }
+
+    .trust-items {
+        display: flex;
+        justify-content: center;
+        gap: 55px;
+
+        margin-top: 25px;
+
+        color: #9aa1b8;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    /* FEATURES */
+
+    .features-section {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto 110px;
+    }
+
+    .section-heading {
+        max-width: 680px;
+        margin-bottom: 42px;
+    }
+
+    .eyebrow {
+        color: #8e7dff;
+
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+
+        text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+        margin-top: 12px;
+
+        font-size: clamp(32px, 4vw, 48px);
+
+        letter-spacing: -2px;
+    }
+
+    .section-heading p {
+        margin-top: 15px;
+
+        color: #858ca4;
+        line-height: 1.7;
+    }
+
+    .feature-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 18px;
+    }
+
+    .feature {
+        position: relative;
+
+        padding: 28px;
+
+        min-height: 225px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(24,28,50,0.82),
+                rgba(13,16,31,0.82)
+            );
+
+        border:
+            1px solid rgba(255,255,255,0.07);
+
+        transition:
+            transform 0.3s ease,
+            border 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .feature:hover {
+        transform: translateY(-8px);
+
+        border-color:
+            rgba(124,92,255,0.35);
+
+        box-shadow:
+            0 25px 60px rgba(0,0,0,0.25);
+    }
+
+    .feature-icon {
+        width: 45px;
+        height: 45px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 13px;
+
+        background:
+            rgba(124,92,255,0.13);
+
+        color: #a99bff;
+
+        font-size: 18px;
+
+        margin-bottom: 22px;
+    }
+
+    .feature h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .feature p {
+        color: #7f879f;
+
+        line-height: 1.7;
+        font-size: 13px;
+    }
+
+    /* CTA */
+
+    .final-cta {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto 100px;
+
+        padding: 65px 40px;
+
+        text-align: center;
+
+        border-radius: 30px;
+
+        background:
+            radial-gradient(
+                circle at 50% 0%,
+                rgba(119,91,255,0.3),
+                transparent 55%
+            ),
+            linear-gradient(
+                135deg,
+                #151936,
+                #0d1021
+            );
+
+        border:
+            1px solid rgba(255,255,255,0.09);
+
+        position: relative;
+        overflow: hidden;
+    }
+
+    .final-cta h2 {
+        font-size: clamp(32px, 4vw, 50px);
+        letter-spacing: -2px;
+    }
+
+    .final-cta p {
+        color: #858ca4;
+        margin: 15px auto 28px;
+        max-width: 560px;
+    }
+
+    /* FOOTER */
+
+    footer {
+        padding: 30px 20px;
+
+        border-top:
+            1px solid rgba(255,255,255,0.06);
+
+        text-align: center;
+
+        color: #555d75;
+
+        font-size: 12px;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp {
+
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+    @keyframes float {
+
+        0%, 100% {
+            transform: translateY(0) rotate(1deg);
+        }
+
+        50% {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+
+        .hero {
+            grid-template-columns: 1fr;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .hero-card {
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .trust-items {
+            flex-wrap: wrap;
+            gap: 20px 35px;
+        }
+
+    }
+
+    @media (max-width: 600px) {
+
+        .navbar {
+            width: calc(100% - 24px);
+        }
+
+        nav {
+            gap: 12px;
+        }
+
+        nav a:not(:last-child) {
+            display: none;
+        }
+
+        .hero {
+            width: calc(100% - 28px);
+            margin-top: 45px;
+        }
+
+        h1 {
+            letter-spacing: -2.5px;
+        }
+
+        .description {
+            font-size: 15px;
+        }
+
+        .hero-buttons {
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1;
+        }
+
+        .floating-stat {
+            display: none;
+        }
+
+        .features-section,
+        .final-cta {
+            width: calc(100% - 28px);
+        }
+
+        .final-cta {
+            padding: 45px 22px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<!-- ================================
+     NAVIGATION
+================================= -->
+
+<header class="navbar">
+
+    <a href="/index.html" class="logo">
+        TaskFlow
+    </a>
+
+    <nav>
+
+        <a href="/index.html">
+            Home
+        </a>
+
+        <a href="/login.html">
+            Login
+        </a>
+
+        <a href="/register.html">
+            Get Started
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================================
+     HERO
+================================= -->
+
+<main>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="tagline">
+                SMARTER WORK. BETTER FLOW.
+            </p>
+
+            <h1>
+
+                Turn your work
+
+                <br>
+
+                into a
+
+                <span>
+                    seamless flow.
+                </span>
+
+            </h1>
+
+            <p class="description">
+
+                TaskFlow brings projects, tasks,
+                teams and progress together in one
+                powerful workspace designed to help
+                you move from planning to done.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="/register.html"
+                    class="btn primary-btn"
+                >
+                    Start Building →
+                </a>
+
+                <a
+                    href="/login.html"
+                    class="btn secondary-btn"
+                >
+                    Sign in
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT PREVIEW -->
+
+        <section class="hero-card">
+
+            <div class="card-top">
+
+                <div class="window-dots">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+                <span class="preview-label">
+                    TASKFLOW WORKSPACE
+                </span>
+
+            </div>
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        My Tasks
+                    </h3>
+
+                    <p>
+                        Friday · 6 tasks remaining
+                    </p>
+
+                </div>
+
+                <span class="task-icon">
+                    ✓
+                </span>
+
+            </div>
+
+
+            <div class="task">
+
+                <div class="task-check">
+                    ✓
+                </div>
+
+                <div class="task-info">
+
+                    <strong>
+                        Design project dashboard
+                    </strong>
+
+                    <small>
+                        Completed · Today
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="task">
+
+                <div class="task-check">
+                    ✓
+                </div>
+
+                <div class="task-info">
+
+                    <strong>
+                        Connect API integration
+                    </strong>
+
+                    <small>
+                        Completed · Today
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="task">
+
+                <div class="task-check pending">
+                </div>
+
+                <div class="task-info">
+
+                    <strong>
+                        Review team tasks
+                    </strong>
+
+                    <small>
+                        Due tomorrow
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="task">
+
+                <div class="task-check pending">
+                </div>
+
+                <div class="task-info">
+
+                    <strong>
+                        Prepare weekly report
+                    </strong>
+
+                    <small>
+                        Due Friday
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-stat stat-one">
+
+                <strong>
+                    84%
+                </strong>
+
+                <span>
+                    Productivity
+                </span>
+
+            </div>
+
+
+            <div class="floating-stat stat-two">
+
+                <strong>
+                    12
+                </strong>
+
+                <span>
+                    Tasks completed
+                </span>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- ================================
+         TRUST STRIP
+    ================================= -->
+
+    <section class="trust-strip">
+
+        <p>
+            Everything your team needs to keep moving
+        </p>
+
+        <div class="trust-items">
+
+            <span>✓ Projects</span>
+
+            <span>✓ Tasks</span>
+
+            <span>✓ Teams</span>
+
+            <span>✓ Progress</span>
+
+            <span>✓ Collaboration</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FEATURES
+    ================================= -->
+
+    <section class="features-section">
+
+        <div class="section-heading">
+
+            <span class="eyebrow">
+                Built for momentum
+            </span>
+
+            <h2>
+                Everything in one flow.
+            </h2>
+
+            <p>
+                Stop switching between scattered tools.
+                TaskFlow gives your team one focused
+                workspace to plan, collaborate and
+                actually finish the work.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Powerful Task Management
+                </h3>
+
+                <p>
+                    Create, organize and track tasks
+                    with clear priorities, deadlines
+                    and progress.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    Project Collaboration
+                </h3>
+
+                <p>
+                    Bring your team together around
+                    shared projects and keep everyone
+                    aligned.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Progress That Feels Visible
+                </h3>
+
+                <p>
+                    Turn scattered work into visible
+                    progress and know exactly what
+                    needs attention next.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    ◷
+                </div>
+
+                <h3>
+                    Deadlines Without the Chaos
+                </h3>
+
+                <p>
+                    Keep important dates and upcoming
+                    work visible so nothing gets lost.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    +
+                </div>
+
+                <h3>
+                    Team Members
+                </h3>
+
+                <p>
+                    Add members to projects and build
+                    a shared workspace around the
+                    people doing the work.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    One Focused Workspace
+                </h3>
+
+                <p>
+                    From the first task to the final
+                    milestone, keep your workflow
+                    connected in one place.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FINAL CTA
+    ================================= -->
+
+    <section class="final-cta">
+
+        <span class="eyebrow">
+            Ready when you are
+        </span>
+
+        <h2>
+            Your next big project
+            starts here.
+        </h2>
+
+        <p>
+            Create your workspace, organize your
+            tasks and start turning plans into
+            measurable progress.
+        </p>
+
+        <a
+            href="/register.html"
+            class="btn primary-btn"
+        >
+            Create your TaskFlow →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer>
+
+    <p>
+        © 2026 TaskFlow · Built with Node.js,
+        Express & MongoDB
+    </p>
+
+</footer>
+
+</body>
+
+</html>
+

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Sign In — TaskFlow</title>
+
+<link
+    rel="stylesheet"
+    href="/css/style.css"
+>
+
+
+</head>
+
+<body>
+
+
+<!-- ========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        TaskFlow
+    </div>
+
+
+    <nav>
+
+        <a href="/index.html">
+            Home
+        </a>
+
+        <a href="/register.html">
+            Create Account
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ========================================
+     LOGIN PAGE
+========================================= -->
+
+<main class="auth-page">
+
+
+    <!-- ========================================
+         LOGIN CARD
+    ========================================= -->
+
+    <section class="auth-card">
+
+        <div class="auth-badge">
+            ✦ WELCOME BACK
+        </div>
+
+
+        <h1>
+
+            Welcome
+            <span>back.</span>
+
+        </h1>
+
+
+        <p class="auth-subtitle">
+
+            Sign in to your workspace,
+            pick up where you left off,
+            and keep the momentum going.
+
+        </p>
+
+
+
+        <!-- ========================================
+             LOGIN FORM
+        ========================================= -->
+
+        <form id="loginForm">
+
+
+            <!-- USERNAME / EMAIL -->
+
+            <div class="form-group">
+
+                <label for="identifier">
+                    Username or email
+                </label>
+
+
+                <input
+                    type="text"
+                    id="identifier"
+                    name="identifier"
+                    placeholder="aashi or you@example.com"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggle"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="auth-submit"
+            >
+
+                Sign in to TaskFlow
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- REGISTER LINK -->
+
+        <p class="auth-switch">
+
+            Don't have an account?
+
+            <a href="/register.html">
+                Create your TaskFlow
+            </a>
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         VISUAL SECTION
+    ========================================= -->
+
+    <section class="auth-visual">
+
+        <div class="visual-glow"></div>
+
+
+        <div class="visual-content">
+
+
+            <span class="visual-label">
+                YOUR WORKSPACE
+            </span>
+
+
+            <h2>
+
+                Your work.
+                <span>
+                    In flow.
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Everything you need to plan,
+                organize, collaborate,
+                and turn your goals into
+                meaningful progress.
+
+            </p>
+
+
+
+            <!-- ========================================
+                 MINI STATS
+            ========================================= -->
+
+            <div class="mini-stat-row">
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                    <span>
+                        Organized
+                    </span>
+
+                </div>
+
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                    <span>
+                        Productive
+                    </span>
+
+                </div>
+
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        ◆
+                    </strong>
+
+                    <span>
+                        Connected
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <p>
+        © 2026 TaskFlow · Built for better workflows.
+    </p>
+
+</footer>
+
+
+
+<!-- ========================================
+     LOGIN JAVASCRIPT
+========================================= -->
+
+<script src="/js/auth.js"></script>
+
+
+<!-- ========================================
+     PASSWORD TOGGLE
+========================================= -->
+
+<script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const passwordInput =
+                document.querySelector(
+                    "#password"
+                );
+
+            const passwordToggle =
+                document.querySelector(
+                    "#passwordToggle"
+                );
+
+
+            if (
+                !passwordInput ||
+                !passwordToggle
+            ) {
+
+                return;
+
+            }
+
+
+            passwordToggle.addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        passwordInput.type ===
+                        "password"
+                    ) {
+
+                        passwordInput.type =
+                            "text";
+
+                        passwordToggle.textContent =
+                            "🙈";
+
+                        passwordToggle.setAttribute(
+                            "aria-label",
+                            "Hide password"
+                        );
+
+                    } else {
+
+                        passwordInput.type =
+                            "password";
+
+                        passwordToggle.textContent =
+                            "👁";
+
+                        passwordToggle.setAttribute(
+                            "aria-label",
+                            "Show password"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

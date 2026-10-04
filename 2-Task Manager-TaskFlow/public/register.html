@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Create your TaskFlow</title>
+
+<link
+    rel="stylesheet"
+    href="/css/style.css"
+>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        TaskFlow
+    </div>
+
+    <nav>
+
+        <a href="/index.html">
+            Home
+        </a>
+
+        <a href="/login.html">
+            Sign In
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="auth-page">
+
+    <section class="auth-card">
+
+        <div class="auth-badge">
+            ✦ GET STARTED
+        </div>
+
+
+        <h1>
+            Create your
+            <span>TaskFlow.</span>
+        </h1>
+
+
+        <p class="auth-subtitle">
+            Build momentum, organize your work,
+            and turn your ideas into progress.
+        </p>
+
+
+        <form id="registerForm">
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autocomplete="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    placeholder="Choose a username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="Enter a valid email address"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a secure password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="togglePassword"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+
+                <div class="password-strength">
+
+                    <div class="strength-bars">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+
+                    <span
+                        id="passwordStrengthText"
+                        class="strength-text"
+                    >
+                        Use 8+ characters
+                    </span>
+
+                </div>
+
+
+                <div class="password-requirements">
+
+                    <p id="lengthRequirement">
+                        <span>○</span>
+                        At least 8 characters
+                    </p>
+
+                    <p id="uppercaseRequirement">
+                        <span>○</span>
+                        One uppercase letter
+                    </p>
+
+                    <p id="numberRequirement">
+                        <span>○</span>
+                        One number
+                    </p>
+
+                    <p id="specialRequirement">
+                        <span>○</span>
+                        One special character
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-submit"
+            >
+
+                Create your TaskFlow
+
+                <span>→</span>
+
+            </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+            Already have an account?
+
+            <a href="/login.html">
+                Sign in
+            </a>
+
+        </p>
+
+    </section>
+
+
+    <section class="auth-visual">
+
+        <div class="visual-glow"></div>
+
+        <div class="visual-content">
+
+            <span class="visual-label">
+                YOUR WORKSPACE
+            </span>
+
+
+            <h2>
+                Ideas become
+                <span>actions.</span>
+            </h2>
+
+
+            <p>
+                Create projects, manage tasks,
+                collaborate with your team,
+                and watch your progress come alive.
+            </p>
+
+
+            <div class="mini-stat-row">
+
+                <div class="mini-stat">
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                    <span>
+                        Organized
+                    </span>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        ↗
+                    </strong>
+
+                    <span>
+                        Productive
+                    </span>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        ◆
+                    </strong>
+
+                    <span>
+                        Connected
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+
+    togglePassword.addEventListener(
+        "click",
+        function () {
+
+            const isPassword =
+                passwordInput.type === "password";
+
+
+            passwordInput.type =
+                isPassword
+                    ? "text"
+                    : "password";
+
+
+            togglePassword.textContent =
+                isPassword
+                    ? "🙈"
+                    : "👁";
+
+
+            togglePassword.setAttribute(
+                "aria-label",
+                isPassword
+                    ? "Hide password"
+                    : "Show password"
+            );
+
+        }
+    );
+
+
+    const strengthText =
+        document.getElementById(
+            "passwordStrengthText"
+        );
+
+
+    const strengthBars =
+        document.querySelectorAll(
+            ".strength-bars span"
+        );
+
+
+    const lengthRequirement =
+        document.getElementById(
+            "lengthRequirement"
+        );
+
+
+    const uppercaseRequirement =
+        document.getElementById(
+            "uppercaseRequirement"
+        );
+
+
+    const numberRequirement =
+        document.getElementById(
+            "numberRequirement"
+        );
+
+
+    const specialRequirement =
+        document.getElementById(
+            "specialRequirement"
+        );
+
+
+    function updateRequirement(
+        element,
+        valid
+    ) {
+
+        const icon =
+            element.querySelector("span");
+
+
+        if (valid) {
+
+            icon.textContent = "✓";
+
+            element.classList.add(
+                "valid"
+            );
+
+        } else {
+
+            icon.textContent = "○";
+
+            element.classList.remove(
+                "valid"
+            );
+
+        }
+
+    }
+
+
+    passwordInput.addEventListener(
+        "input",
+        function () {
+
+            const password =
+                passwordInput.value;
+
+
+            const hasLength =
+                password.length >= 8;
+
+
+            const hasUppercase =
+                /[A-Z]/.test(password);
+
+
+            const hasNumber =
+                /[0-9]/.test(password);
+
+
+            const hasSpecial =
+                /[^A-Za-z0-9]/.test(password);
+
+
+            updateRequirement(
+                lengthRequirement,
+                hasLength
+            );
+
+
+            updateRequirement(
+                uppercaseRequirement,
+                hasUppercase
+            );
+
+
+            updateRequirement(
+                numberRequirement,
+                hasNumber
+            );
+
+
+            updateRequirement(
+                specialRequirement,
+                hasSpecial
+            );
+
+
+            let strength = 0;
+
+
+            if (hasLength) {
+                strength++;
+            }
+
+
+            if (hasUppercase) {
+                strength++;
+            }
+
+
+            if (hasNumber) {
+                strength++;
+            }
+
+
+            if (hasSpecial) {
+                strength++;
+            }
+
+
+            strengthBars.forEach(
+                function (bar, index) {
+
+                    bar.classList.toggle(
+                        "active",
+                        index < strength
+                    );
+
+                }
+            );
+
+
+            if (!password) {
+
+                strengthText.textContent =
+                    "Use 8+ characters";
+
+            } else if (strength <= 1) {
+
+                strengthText.textContent =
+                    "Weak password";
+
+            } else if (strength === 2) {
+
+                strengthText.textContent =
+                    "Fair password";
+
+            } else if (strength === 3) {
+
+                strengthText.textContent =
+                    "Good password";
+
+            } else {
+
+                strengthText.textContent =
+                    "Strong password ✓";
+
+            }
+
+        }
+    );
+
+
+    document
+        .getElementById("registerForm")
+        .addEventListener(
+            "submit",
+            function (event) {
+
+                const password =
+                    passwordInput.value;
+
+
+                const strongPassword =
+                    password.length >= 8 &&
+                    /[A-Z]/.test(password) &&
+                    /[0-9]/.test(password) &&
+                    /[^A-Za-z0-9]/.test(password);
+
+
+                if (!strongPassword) {
+
+                    event.preventDefault();
+
+
+                    alert(
+                        "Please create a stronger password using at least 8 characters, one uppercase letter, one number, and one special character."
+                    );
+
+                    passwordInput.focus();
+
+                }
+
+            }
+        );
+
+</script>
+
+
+<script src="/js/auth.js"></script>
+
+</body>
+
+</html>
+

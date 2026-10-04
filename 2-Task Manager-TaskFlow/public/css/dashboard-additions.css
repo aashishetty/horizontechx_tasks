@@ -1,0 +1,28 @@
+
+/* =========================================================
+   TASKFLOW DASHBOARD POLISH ADDITIONS
+   ========================================================= */
+.dashboard-project{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:13px;padding:14px;border-radius:13px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:.2s ease;}
+.dashboard-project:hover{background:rgba(255,255,255,.045);border-color:rgba(139,92,246,.18);transform:translateX(3px);}
+.dashboard-project-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(99,102,241,.1));color:#b7a8ff;font-weight:800;}
+.dashboard-project-info{min-width:0;}
+.dashboard-project-info strong{display:block;font-size:12px;margin-bottom:4px;}
+.dashboard-project-info span{display:block;color:#6e7385;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dashboard-project-info small{display:block;color:#8f95a8;font-size:9px;margin-top:5px;}
+.dashboard-project-meta{text-align:right;}
+.dashboard-project-meta small{display:block;color:#656a7c;font-size:9px;margin-bottom:5px;}
+.dashboard-project-meta span{color:#9e8cff;font-size:10px;font-weight:700;}
+.activity-row{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.05);}
+.activity-row>span{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:rgba(139,92,246,.1);color:#b7a8ff;}
+.activity-row strong{display:block;font-size:10px;}
+.activity-row small{display:block;color:#6e7385;font-size:9px;margin-top:3px;}
+@media(max-width:650px){.dashboard-project{grid-template-columns:auto minmax(0,1fr);}.dashboard-project-meta{display:none;}}
+
+
+/* Project checklist progress */
+.dashboard-project-progress{margin-top:10px;max-width:420px;}
+.dashboard-project-progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;color:#777d91;font-size:10px;}
+.dashboard-project-progress-top strong{color:#b7a8ff;font-size:10px;}
+.dashboard-project-progress-track{height:6px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;}
+.dashboard-project-progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#8b5cf6,#6366f1);transition:width .25s ease;}
+
