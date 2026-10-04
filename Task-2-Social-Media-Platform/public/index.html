@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>VYBE — Home</title><link rel="stylesheet" href="style.css"><script src="theme.js"></script></head><body>
+<aside class="main-sidebar"><div class="brand"><div class="brand-icon">✦</div><div><h1>VYBE</h1><span>Share your world.</span></div></div><nav class="sidebar-nav"><a href="index.html" class="nav-item active"><span>⌂</span><strong>Home</strong></a><a href="explore.html" class="nav-item"><span>⌕</span><strong>Explore</strong></a><a href="profile.html" class="nav-item"><span>◯</span><strong>Profile</strong></a><a href="activity.html" class="nav-item"><span>♡</span><strong>Activity</strong></a><a href="settings.html" class="nav-item"><span>⚙</span><strong>Settings</strong></a></nav><div class="sidebar-bottom"><a class="mini-profile" href="profile.html"><div class="mini-avatar" id="miniAvatar">A</div><div><strong id="miniName">You</strong><span id="miniUsername">@you</span></div></a><button class="logout" data-logout>↪ Logout</button></div></aside>
+<main class="dashboard"><header class="topbar"><div><p class="page-label">YOUR FEED</p><h2 id="welcomeTitle">Welcome back ✦</h2></div><div class="topbar-profile"><a class="top-avatar" href="profile.html" id="topAvatar">A</a></div></header>
+<div class="content-grid"><section class="feed">
+<section class="hero-card"><div class="hero-content"><p class="hero-tag">✦ A SPACE FOR YOUR VYBE</p><h1>Post less.<br>Say more.</h1><p>Share the moments, ideas and tiny wins that make your day yours. Follow people you actually want to hear from.</p><div class="hero-pills"><span>✨ Discover</span><span>💬 Connect</span><span>♥ Express</span></div></div><div class="hero-decoration"><div class="hero-circle circle-one"></div><div class="hero-circle circle-two"></div><div class="hero-circle circle-three"></div><span>✦</span></div></section>
+<section class="post-box"><div class="composer-header"><div class="composer-avatar" id="composerAvatar">A</div><div><strong id="composerName">You</strong><span id="composerUsername">@you</span></div></div><textarea id="postText" placeholder="What's your VYBE today?"></textarea><div class="composer-bottom"><div class="composer-options"><button id="photoButton" type="button">▧ Photo</button><button id="feelingButton" type="button">☺ Feeling</button><button id="locationButton" type="button">⌖ Location</button></div><button id="postButton" class="post-button" type="button">Share VYBE</button></div><input id="photoInput" type="file" accept="image/*" hidden></section>
+<div id="posts" class="posts posts-container"></div></section>
+<aside class="right-panel"><section class="side-card"><div class="side-head"><h3>People to follow</h3><span>Discover</span></div><div id="suggestedUsers"></div></section><section class="side-card"><div class="side-head"><h3>What's moving</h3><span>Trending</span></div><div id="trendingList"></div></section><section class="side-card"><div class="side-head"><h3>Your VYBE</h3><span>Today</span></div><div class="empty-side">Keep sharing. Your next great conversation can start with one post.</div></section></aside></div>
+<!-- VYBE Vibe Studio -->
+<div class="vibe-modal" id="vibeModal" aria-hidden="true">
+  <div class="vibe-modal-card">
+    <button class="vibe-close" id="closeVibeModal" type="button" aria-label="Close mood studio">×</button>
+    <div class="vibe-modal-glow"></div>
+    <p class="page-label">✦ POST STUDIO</p>
+    <h2 id="vibeModalTitle">Set the mood ✦</h2>
+    <p class="vibe-modal-subtitle" id="vibeModalSubtitle">Choose an energy, make it yours, and give your VYBE a signature.</p>
+    <div id="vibeChoices" class="vibe-choices"></div>
+    <div class="vibe-custom-row">
+      <input id="vibeCustomInput" maxlength="80" placeholder="Or type your own...">
+      <button id="vibeCustomApply" type="button">Use it</button>
+    </div>
+    <button id="vibeDone" class="vibe-done" type="button">Done ✦</button>
+  </div>
+</div>
+
+<!-- Quick DM -->
+<div class="dm-modal" id="dmModal" aria-hidden="true">
+  <div class="dm-card">
+    <button class="vibe-close" id="closeDmModal" type="button" aria-label="Close message">×</button>
+    <div class="dm-recipient">
+      <div class="dm-avatar" id="dmAvatar">A</div>
+      <div><p class="page-label">✦ QUICK MESSAGE</p><h2 id="dmTitle">Message</h2><span id="dmSubtitle">Start a real conversation</span></div>
+    </div>
+    <div class="dm-messages" id="dmMessages"></div>
+    <div class="dm-compose">
+      <textarea id="dmInput" rows="2" maxlength="500" placeholder="Write something worth sending…"></textarea>
+      <button id="dmSend" type="button">Send ↗</button>
+    </div>
+  </div>
+</div>
+
+</main><script src="auth.js"></script><script src="script.js"></script></body></html>

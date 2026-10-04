@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>VYBE — Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+</head>
+<body class="profile-page">
+  <aside class="main-sidebar">
+    <div class="brand"><div class="brand-icon">✦</div><div><h1>VYBE</h1><span>Share your world.</span></div></div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item"><span>⌂</span><strong>Home</strong></a>
+      <a href="explore.html" class="nav-item"><span>⌕</span><strong>Explore</strong></a>
+      <a href="profile.html" class="nav-item active"><span>◯</span><strong>Profile</strong></a>
+      <a href="activity.html" class="nav-item"><span>♡</span><strong>Activity</strong></a>
+      <a href="settings.html" class="nav-item"><span>⚙</span><strong>Settings</strong></a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a class="mini-profile" href="profile.html"><div class="mini-avatar" id="miniAvatar">A</div><div><strong id="miniName">You</strong><span id="miniUsername">@you</span></div></a>
+      <button class="logout" data-logout>↪ Logout</button>
+    </div>
+  </aside>
+
+  <main class="page-main">
+    <div class="page-title"><p class="page-label">PROFILE</p><h2>Your VYBE, your story.</h2><p>See what makes this profile worth following — bio, details, posts and conversations.</p></div>
+    <section class="profile-card">
+      <div class="profile-cover"></div>
+      <div class="profile-body">
+        <div class="profile-topline">
+          <div class="profile-picture" id="profilePicture">A</div>
+          <div class="profile-head-actions">
+            <button class="edit-profile-btn" id="editProfile">Edit profile</button>
+            <button class="profile-follow-btn" id="profileFollow" hidden>Follow +</button>
+            <button class="profile-message-btn" id="profileMessage" hidden>Message ↗</button>
+          </div>
+        </div>
+        <div class="profile-badge">✦ VYBE MEMBER</div>
+        <h2 id="profileName">Aashi Shetty</h2>
+        <p class="username" id="profileUsername">@aashi</p>
+        <p class="bio" id="profileBio">IT student · Developer</p>
+        <div class="profile-facts"><span id="profileRole" hidden></span><span id="profileLocation" hidden></span><span id="profileWebsite" hidden></span></div>
+        <div class="profile-stats"><div><strong id="postCount">0</strong><span>Posts</span></div><div><strong id="followerCount">0</strong><span>Followers</span></div><div><strong id="followingCount">0</strong><span>Following</span></div></div>
+        <div class="profile-tabs"><button class="profile-tab active" data-tab="posts">Posts</button><button class="profile-tab" data-tab="about">About</button><button class="profile-tab" data-tab="liked">Liked</button></div>
+        <div class="profile-tab-panel active" id="tab-posts"><div id="profilePosts" class="post-grid"></div></div>
+        <div class="profile-tab-panel" id="tab-about"><div id="aboutGrid" class="about-grid"></div></div>
+        <div class="profile-tab-panel" id="tab-liked"><div id="likedPosts" class="liked-grid"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="editModal" aria-hidden="true"><div class="profile-studio-modal">
+    <button class="vibe-close" id="closeModal" type="button">×</button>
+    <div class="studio-copy"><p class="page-label">✦ PROFILE STUDIO</p><h2>Make your profile feel like you.</h2><p>Give people a reason to stay, follow and start a conversation.</p></div>
+    <div class="studio-layout">
+      <div class="studio-preview"><span class="studio-preview-label">LIVE PREVIEW</span><div class="studio-preview-cover"></div><div class="studio-preview-body"><div class="studio-preview-avatar" id="editPreviewAvatar">A</div><strong id="editPreviewName">You</strong><span id="editPreviewRole">Your headline</span><p id="editPreviewBio">Your profile story will appear here.</p><div class="studio-preview-tags"><span>VYBE</span><span>Creator</span><span>Open to connect</span></div></div></div>
+      <form id="profileForm"><label>Name<input id="editName" required></label><label>Role / headline<input id="editRole"></label><label>Location<input id="editLocation"></label><label>Website<input id="editWebsite" placeholder="yourwebsite.com"></label><label>Bio<textarea id="editBio" rows="4" maxlength="180"></textarea></label><button class="primary-btn" type="submit">Save changes ✦</button><p id="profileMessage" class="form-message"></p></form>
+    </div>
+  </div></div>
+
+  <div class="dm-modal" id="dmModal" aria-hidden="true"><div class="dm-card">
+    <button class="vibe-close" id="closeDmModal" type="button">×</button>
+    <div class="dm-recipient"><div class="dm-avatar" id="dmAvatar">A</div><div><p class="page-label">✦ QUICK MESSAGE</p><h2 id="dmTitle">Message</h2><span id="dmSubtitle">Start a real conversation</span></div></div>
+    <div class="dm-messages" id="dmMessages"></div>
+    <div class="dm-compose"><textarea id="dmInput" rows="2" maxlength="500" placeholder="Write something worth sending…"></textarea><button id="dmSend" type="button">Send ↗</button></div>
+  </div></div>
+  <script src="profile.js"></script>
+</body>
+</html>

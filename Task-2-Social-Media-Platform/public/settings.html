@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>VYBE — Settings</title><link rel="stylesheet" href="style.css"><script src="theme.js"></script></head>
+<body>
+<aside class="main-sidebar"><div class="brand"><div class="brand-icon">✦</div><div><h1>VYBE</h1><span>Share your world.</span></div></div><nav class="sidebar-nav"><a href="index.html" class="nav-item"><span>⌂</span><strong>Home</strong></a><a href="explore.html" class="nav-item"><span>⌕</span><strong>Explore</strong></a><a href="profile.html" class="nav-item"><span>◯</span><strong>Profile</strong></a><a href="activity.html" class="nav-item"><span>♡</span><strong>Activity</strong></a><a href="settings.html" class="nav-item active"><span>⚙</span><strong>Settings</strong></a></nav><div class="sidebar-bottom"><a class="mini-profile" href="profile.html"><div class="mini-avatar" id="miniAvatar">A</div><div><strong id="miniName">You</strong><span id="miniUsername">@you</span></div></a><button class="logout" data-logout>↪ Logout</button></div></aside>
+<main class="page-main">
+<section class="simple-page settings-page">
+  <div class="page-title"><p class="page-label">VYBE CONTROL ROOM</p><h2>Your space. Your rules.</h2><p>Fine-tune the experience, privacy and creator tools behind your profile.</p></div>
+  <div class="settings-layout">
+    <div class="settings-list">
+      <div class="settings-section-title">Appearance</div>
+      <div class="setting-row"><div><strong>Dark mode</strong><span>Switch to the cinematic night interface.</span></div><label class="switch"><input id="themeToggle" type="checkbox"><span></span></label></div>
+      <div class="setting-row"><div><strong>Reduce motion</strong><span>Use calmer transitions and fewer animations.</span></div><label class="switch"><input id="motionToggle" type="checkbox"><span></span></label></div>
+      <div class="setting-row"><div><strong>Compact feed</strong><span>Fit more conversations into one screen.</span></div><label class="switch"><input id="compactToggle" type="checkbox"><span></span></label></div>
+
+      <div class="settings-section-title">Notifications</div>
+      <div class="setting-row"><div><strong>Like notifications</strong><span>Know when people react to your posts.</span></div><label class="switch"><input id="likeNotify" type="checkbox" checked><span></span></label></div>
+      <div class="setting-row"><div><strong>Comment notifications</strong><span>Stay updated when conversations continue.</span></div><label class="switch"><input id="commentNotify" type="checkbox" checked><span></span></label></div>
+      <div class="setting-row"><div><strong>Follow notifications</strong><span>Get notified when someone follows you.</span></div><label class="switch"><input id="followNotify" type="checkbox" checked><span></span></label></div>
+      <div class="setting-row"><div><strong>Email digest</strong><span>Receive a lightweight weekly activity summary.</span></div><label class="switch"><input id="emailDigest" type="checkbox"><span></span></label></div>
+
+      <div class="settings-section-title">Privacy & discovery</div>
+      <div class="setting-row"><div><strong>Profile visibility</strong><span>Let people discover your profile and posts.</span></div><select id="visibilitySetting" class="settings-select"><option value="public">Public</option><option value="followers">Followers only</option></select></div>
+      <div class="setting-row"><div><strong>Show online status</strong><span>Let people know when you're active.</span></div><label class="switch"><input id="onlineToggle" type="checkbox" checked><span></span></label></div>
+      <div class="setting-row"><div><strong>Personalized explore</strong><span>Use your interactions to shape discovery suggestions.</span></div><label class="switch"><input id="personalizedToggle" type="checkbox" checked><span></span></label></div>
+
+      <div class="settings-section-title">Creator tools</div>
+      <div class="setting-row"><div><strong>Creator insights</strong><span>Show lightweight engagement metrics on your profile.</span></div><label class="switch"><input id="insightsToggle" type="checkbox" checked><span></span></label></div>
+      <div class="setting-row"><div><strong>Share previews</strong><span>Include a visual preview when sharing a VYBE link.</span></div><label class="switch"><input id="previewToggle" type="checkbox" checked><span></span></label></div>
+
+      <div id="settingsMessage" class="form-message"></div>
+      <div class="settings-actions"><button class="primary-btn" id="saveSettings">Save preferences</button><button class="secondary-btn" id="resetSettings" type="button">Reset preferences</button><button class="danger-btn" id="logoutSettings" type="button">Logout from VYBE</button></div>
+    </div>
+    <aside class="settings-preview"><div class="preview-label">LIVE PREVIEW</div><div class="preview-card"><div class="preview-avatar" id="previewAvatar">A</div><strong id="previewName">Your profile</strong><span id="previewMode">Public creator profile</span><div class="preview-bars"><i></i><i></i><i></i></div></div><p>Recruiter-ready controls, privacy preferences and creator settings in one clean control room.</p></aside>
+  </div>
+</section>
+</main>
+<script src="page.js"></script>
+</body></html>
